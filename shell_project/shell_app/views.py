@@ -17,7 +17,7 @@ from shell_project.settings import (
     ADMIN_SHELL_OUTPUT_SIZE,
     ADMIN_SHELL_ENABLE,
     ADMIN_SHELL_ONLY_DEBUG_MODE,
-    ADMIN_SHELL_ONLY_FOR_SUPERUSER,
+    # ADMIN_SHELL_ONLY_FOR_SUPERUSER,
 )
 
 import django
@@ -78,12 +78,12 @@ class Shell(FormView):
 
         if not ADMIN_SHELL_ENABLE:
             return HttpResponseNotFound("Not found: Django admin shell is not enabled")
-        elif is_auth is False or request.user.is_staff is False:
-            return HttpResponseForbidden("Forbidden: To access Django admin shell you must have access the admin site")
+        # elif is_auth is False or request.user.is_staff is False:
+        #     return HttpResponseForbidden("Forbidden: To access Django admin shell you must have access the admin site")
         elif ADMIN_SHELL_ONLY_DEBUG_MODE and settings.DEBUG is False:
             return HttpResponseForbidden("Forbidden :Django admin shell require DEBUG mode")
-        elif ADMIN_SHELL_ONLY_FOR_SUPERUSER and request.user.is_superuser is False:
-            return HttpResponseForbidden("Forbidden: To access Django admin shell you must be superuser")
+        # elif ADMIN_SHELL_ONLY_FOR_SUPERUSER and request.user.is_superuser is False:
+        #     return HttpResponseForbidden("Forbidden: To access Django admin shell you must be superuser")
         return super(Shell, self).dispatch(request, *args, **kwargs)
 
     def get_output(self):

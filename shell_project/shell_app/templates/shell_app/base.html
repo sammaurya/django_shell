@@ -1,29 +1,35 @@
 
-{% extends "admin/base_site.html" %}
-{% load static %}
+<html>
+    <head>
+        <title>
+        {% block title %}Title{% endblock %}
+        </title>
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta name="robots" content="NONE,NOARCHIVE">
 
-{% block title %}
-    Django admin shell
-{% endblock %}
+        {# Add bootstrap style #}
+        {% block extrastyle %}
+        {% endblock extrastyle %}
 
-{# Add bootstrap style #}
-{% block extrastyle %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static "shell_app/css/bootstrap3.min.css" %}"/>
-    <link rel="stylesheet" href="{% static "shell_app/js/linedtextarea/jquery-linedtextarea.css" %}"/>
-    <link rel="stylesheet" href="{% static "shell_app/css/shell.css" %}"/>
-{% endblock %}
+    </head>
 
-{# Add jQuery style #}
-{% block extrahead %}
-    {{ block.super }}
-    <script src="{% static "shell_app/js/jquery.min.js" %}"></script>
-    <script src="{% static "shell_app/js/linedtextarea/jquery-linedtextarea.js" %}"></script>
-    <script src="{% static "shell_app/js/shell.min.js" %}"></script>
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="{% static "shell_app/js/visualization.js" %}"></script>
-{% endblock %}
+    <body>
+        <div id="container">
 
-{# Remove footer #}
-{% block footer %}
-{% endblock %}
+        <div id="content" class="colM">
+        {% block header %}
+        {% endblock header %}
+        {% block content %}
+        {% endblock content %}
+        </div>
+
+        {# footer #}
+        {% block footer %}
+        {% endblock %}
+
+        {# Add jQuery style #}
+        {% block extrahead %}
+        {% endblock %}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+#container {
+    position: relative;
+    width: 100%;
+    min-width: 980px;
+    padding: 0;
+}
+#content {
+    padding: 20px 40px;
+}
+.colM {
+    width: auto;
+}
+
